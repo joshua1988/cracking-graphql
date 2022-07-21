@@ -1,0 +1,51 @@
+---
+sidebar_position: 5
+---
+
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+# 리졸버(Resolver)
+
+그래프큐엘 쿼리의 필드 1개에 1:1로 매칭되는 함수를 리졸버라고 합니다. 리졸버의 주요 역할은 해당 필드에 필요한 데이터를 서버나 데이터베이스에서 불러오는 것입니다.
+
+<BrowserWindow url="http://localhost:3000">
+
+![dashboard](/img/resolver-flow.png)
+
+</BrowserWindow>
+
+위 그림과 같이 GraphQL 쿼리 요청이 들어오면 해당 쿼리 필드에 필요한 데이터를 클라이언트로 던져주기 위해 리졸버 함수가 실행됩니다.
+
+## 리졸버 함수 인자
+
+리졸버 함수는 4개의 인자를 받습니다.
+
+```js
+name(obj, args, context, info) {
+  return 'Hulk'
+}
+```
+
+- `obj` : 이전 객체
+- `args` : 쿼리 필드에 넘긴 인자
+- `context` : 로그인된 사용자나 DB를 접근할 수 있는 컨텍스트 정보
+- `info` : 현재 쿼리와 관련된 정보. ex) 필드 이름, 스키마 등
+
+## 리졸버 함수 타입
+
+그래프큐엘 내부적으로 정의된 리졸버 함수의 타입은 아래와 같습니다.
+
+```ts
+type GraphQLFieldResolveFn = (
+  source?: any,
+  args?: {[argName: string]: any},
+  context?: any,
+  info?: GraphQLResolveInfo
+) => any
+```
+
+## 참고 자료
+
+- https://www.howtographql.com/basics/3-big-picture/
+- https://graphql.org/learn/execution/#root-fields-resolvers
+- https://graphql.org/graphql-js/type/#graphqlobjecttype
