@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# Mutations
+# 뮤테이션(Mutations)
 
 서버 데이터를 변경(생성, 수정, 삭제)하기 위한 타입입니다. REST API로 서버의 데이터를 변경하는 경우 종종 사이드 이펙트가 있었어서 GET 성격의 조회 API와 조작 API를 분리하였습니다.
 
