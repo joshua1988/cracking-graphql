@@ -13,11 +13,37 @@ SDL의 간단한 예시 코드를 보겠습니다.
 ```graphql
 type Person {
   name: String!
-  age: Int!
+  age: Int
 }
 ```
 
 위 `Person` 타입의 `name` 속성은 문자열이고 `age`는 숫자입니다. `!`는 필수 값을 의미합니다.
+
+## 목록 필드(List Field)
+
+필드 타입으로 목록 타입을 정의할 수 있습니다. `[]` 문법을 사용합니다.
+
+```gql
+type Author {
+  name: String
+  books: [Book] # 여러 개의 Book 타입을 의미
+}
+```
+
+## 필수 목록 필드
+
+목록 필드를 사용할 때 아래와 같이 필수 값으로 지정할 수 있습니다.
+
+```gql
+type Author {
+  books: [Book!]! # 이 목록은 null이 될 수 없고, 목록의 아이템도 null이 될 수 없음
+}
+```
+
+위 코드를 차례대로 쪼개보면 다음과 같습니다.
+
+- `[Book!]` : Book 목록 아이템 중에 `null`이 있을 수 없다.
+- `[Book!]!` : 목록 자체가 `null`이 될 수가 없다.
 
 ## 타입 간 관계 설정
 
@@ -41,3 +67,4 @@ type Person {
 ```
 
 `posts: [Post!]!` 는 `Post` 타입으로 이뤄진 배열을 의미합니다. `!`는 앞에서 안내한 대로 필수 값을 의미합니다.
+
