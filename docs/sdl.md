@@ -23,7 +23,7 @@ type Person {
 
 필드 타입으로 목록 타입을 정의할 수 있습니다. `[]` 문법을 사용합니다.
 
-```gql
+```graphql
 type Author {
   name: String
   books: [Book] # 여러 개의 Book 타입을 의미
@@ -34,7 +34,7 @@ type Author {
 
 목록 필드를 사용할 때 아래와 같이 필수 값으로 지정할 수 있습니다.
 
-```gql
+```graphql
 type Author {
   books: [Book!]! # 이 목록은 null이 될 수 없고, 목록의 아이템도 null이 될 수 없음
 }
