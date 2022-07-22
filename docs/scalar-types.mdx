@@ -19,5 +19,37 @@ sidebar_position: 7
 - `Boolean` : 진위 타입
 - `ID` : 유니크 키 타입. 데이터를 다시 불러오거나 캐싱할 때 사용
 
+## 커스텀 스칼라 타입
 
+기본적으로 제공되는 5가지 스칼라 타입 이외에도 별도의 스칼라 타입을 직접 정의해서 사용할 수 있습니다. 
+예를 들면, 스키마에 아래와 같이 타입을 추가합니다.
 
+```graphql
+scalar Date
+```
+
+위 타입을 받는 서버가 아폴로 서버라고 가정하면 다음과 같이 `Date` 커스텀 타입에 대한 serialization과 validation을 할 수 있습니다.
+
+```ts
+const dateScalar = new GraphQLScalarType({
+  name: 'Date',
+  description: 'Date custom scalar type',
+  serialize(value) {
+    return value.getTime(); // Convert outgoing Date to integer for JSON
+  },
+  parseValue(value) {
+    return new Date(value); // Convert incoming integer to Date
+  },
+  parseLiteral(ast) {
+    if (ast.kind === Kind.INT) {
+      return new Date(parseInt(ast.value, 10)); // Convert hard-coded AST string to integer and then to Date
+    }
+    return null; // Invalid hard-coded value (not an integer)
+  },
+});
+```
+
+## 참고
+
+- https://graphql.org/learn/schema/#scalar-types
+- https://www.apollographql.com/docs/apollo-server/schema/custom-scalars/#defining-a-custom-scalar
