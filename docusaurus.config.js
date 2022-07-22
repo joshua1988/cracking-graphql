@@ -70,7 +70,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/joshua1988/cracking-graphql',
             label: 'GitHub',
             position: 'right',
           },
@@ -110,12 +110,12 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/joshua1988/cracking-graphql',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Captain Pangyo`,
+        copyright: `Copyright © ${new Date().getFullYear()} Stunning FE`,
       },
       prism: {
         theme: lightCodeTheme,
